@@ -15,9 +15,13 @@ function passParams() {
   passObj.count = prompt("How many chars?");
 
   if (passObj.count < 8 || passObj.count > 128 ) {
-  alert("Incorrect");
+  alert("That number is not between 8 and 128.  Please enter a correct number.");
   passParams();
-    } else {
+    } else if (isNaN(passObj.count)) {
+      alert("That is not a number.  Please enter a number between 8 and 128.")
+      passParams();
+    }
+    else {
       passObj.upper = confirm("Tall Letters?");
       passObj.lower = confirm("Small Letters?");
       passObj.nums = confirm("Numbers?");
@@ -52,20 +56,52 @@ function passSelect() {
   }
 }
 
-//check password against criteria
-
-//
-function passCheck() {
-  if (passObj.upper == true) {
-    console.log("yes!")
-  } else {console.log("no!")}
+//checks second array for matching items in first array
+function passComp(arr1, arr2) {
+  return arr1.some(item => arr2.includes(item))
 }
+
+//check for selected criteria and if not found reruns selection function and rechecks
+function passCheck() {
+  if (passObj.upper == true && passComp(lettersUp, passWord)) {
+    console.log("UPPER MATCH FOUND")
+  }
+  if (passObj.upper == true && !passComp(lettersUp, passWord)) {
+    passSelect()
+    passCheck()
+  }
+  if (passObj.lower == true && passComp(lettersLo, passWord)) {
+    console.log("LOWER MATCH FOUND")
+  }
+  if (passObj.lower == true && !passComp(lettersLo, passWord)) {
+    passSelect()
+    passCheck()
+  }
+  if (passObj.nums == true && passComp(numbers, passWord)) {
+    console.log("NUMBER MATCH FOUND")
+  }
+  if (passObj.nums == true && !passComp(numbers, passWord)) {
+    passSelect()
+    passCheck()
+  }
+  if (passObj.specChar == true && passComp(special, passWord)) {
+    console.log("SPECIAL MATCH FOUND")
+  }
+  if (passObj.specChar == true && !passComp(special, passWord)) {
+    passSelect()
+    passCheck()
+  }
+}
+
 
 
 console.log(passObj);
 console.log(passArr);
 console.log(passObj.count);
 console.log(passWord);
+console.log(passCheck())
+
+
 
 // var generateBtn = document.querySelector("#generate");
 
