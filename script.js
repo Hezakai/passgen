@@ -1,15 +1,25 @@
 // Assignment Code
 // arrays for user selectable password options
 const lettersUp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const lettersLo = lettersUp.toLocaleLowerCase();
+const lettersLo = lettersUp.toLowerCase();
 const numbers = "0123456789";
 const special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 
+// creating password object with boolean params
+const passObj = {
+  count: 0,
+  upper: false,
+  lower: false,
+  nums: false,
+  specChar: false,
+}
+
 // console tests
-console.log(lettersLo);
-alert(lettersLo);
-console.log(special);
-alert(special);
+// console.log(lettersLo);
+// alert(lettersLo);
+// console.log(special);
+// alert(special);
+// console.log(passObj);
 
 
 
